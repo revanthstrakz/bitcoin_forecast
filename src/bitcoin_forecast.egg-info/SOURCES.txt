@@ -1,0 +1,12 @@
+README.md
+setup.py
+src/bitcoin_forecast/__init__.py
+src/bitcoin_forecast/model.py
+src/bitcoin_forecast/preprocess.py
+src/bitcoin_forecast/scrap_data.py
+src/bitcoin_forecast/scrap_ground_truth.py
+src/bitcoin_forecast/utils.py
+src/bitcoin_forecast.egg-info/PKG-INFO
+src/bitcoin_forecast.egg-info/SOURCES.txt
+src/bitcoin_forecast.egg-info/dependency_links.txt
+src/bitcoin_forecast.egg-info/top_level.txt
