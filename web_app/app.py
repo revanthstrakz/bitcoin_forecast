@@ -5,14 +5,14 @@ import joblib
 from bitcoin_forecast.scrap_data import get_today_data
 from flask import Flask, render_template
 
-# from retrain_scheduler import run_scheduler
+from retrain_scheduler import run_scheduler
 
 app = Flask(__name__)
 model = joblib.load("rls_model.joblib")
 model_cols = joblib.load("model_cols.joblib")
 
 # start scheduler to re-train model for every 20 days
-# run_scheduler()
+run_scheduler()
 
 
 @app.route("/")

@@ -4,13 +4,15 @@
 # Create a cron job which will run return function for every 20 days
 
 import sqlite3
-from datetime import datetime
 
 import joblib
 import pandas as pd
 import pytz
 from apscheduler.schedulers.background import BackgroundScheduler
 from bitcoin_forecast.scrap_ground_truth import get_final_ground_truth_data
+
+# from datetime import datetime
+
 
 scheduler = BackgroundScheduler(timezone=pytz.timezone("gmt"))
 
@@ -41,15 +43,15 @@ def fetch_data_db(db_name):
 
 
 def incremental_retrain():
-    model = joblib.load("artifacts/model/updated/rls_model.joblib")
-    model_cols = joblib.load("artifacts/model/model_cols.joblib")
+    model = joblib.load("rls_model.joblib")
+    model_cols = joblib.load("model_cols.joblib")
     data = get_final_ground_truth_data()
     X = data[model_cols]
     y = data["tomorrow_price_btc"]
     model.update_many(X, y)
-    time_stamp = datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
-    model = joblib.dump(model, f"artifacts/model/rls_model/rls_model_{time_stamp}.joblib")
-    model = joblib.dump(model, "artifacts/model/updated/rls_model.joblib")
+    # time_stamp = datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
+    # model = joblib.dump(model, f"artifacts/model/rls_model/rls_model_{time_stamp}.joblib")
+    model = joblib.dump(model, "rls_model.joblib")
 
 
 def run_scheduler():
