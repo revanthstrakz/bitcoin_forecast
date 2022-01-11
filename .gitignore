@@ -1,0 +1,7 @@
+.*
+!.gitignore
+data
+notebooks
+local
+artifacts/model/rls_model.joblib
+artifacts/model/rls_model/*
