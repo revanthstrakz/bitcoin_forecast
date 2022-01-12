@@ -4,9 +4,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bitcoin Price Prediction</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet" /> -->
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -14,21 +16,32 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
+    <style>
+        .container {
+            background-color: #f1f8f9;
+            margin-top: 30px;
+        }
+    </style>
 
 </head>
 
 <body>
-    <div class="login">
-        <h1>Predict Bitcoin Price</h1>
+    <div class="container bg-dark text-white">
+        <h1 style="text-align: center;">Predict Bitcoin Price</h1>
 
-        <!-- Main Input For Receiving Query to our ML -->
-        <form action="{{ url_for('predict')}}" method="post">
-            <button type="submit" class="btn btn-primary btn-block btn-large">Predict tomorrow's price</button>
-        </form>
+        <div class="col-md-6">
+            <!-- Main Input For Receiving Query to our ML -->
+            <form action="{{ url_for('predict')}}" method="post">
+                <button type="submit" class="btn btn-primary btn-block btn-large">Predict tomorrow's price</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            {{ prediction_text }}
+            <div class="table-responsive">
+                {{ comparison_table|safe }}
+            </div>
+        </div>
 
-        <br>
-        <br>
-        {{ prediction_text }}
 
     </div>
 
