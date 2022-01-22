@@ -20,6 +20,7 @@
         .container {
             background-color: #f1f8f9;
             margin-top: 30px;
+            padding-bottom: 20px;
         }
     </style>
 
@@ -28,17 +29,29 @@
 <body>
     <div class="container bg-dark text-white">
         <h1 style="text-align: center;">Predict Bitcoin Price</h1>
-
-        <div class="col-md-6">
-            <!-- Main Input For Receiving Query to our ML -->
-            <form action="{{ url_for('predict')}}" method="post">
-                <button type="submit" class="btn btn-primary btn-block btn-large">Predict tomorrow's price</button>
-            </form>
+        <div>
+            <div class="col-md-6">
+                <!-- Main Input For Receiving Query to our ML -->
+                <form action="{{ url_for('predict')}}" method="post">
+                    <button type="submit" class="btn btn-primary btn-block btn-large">Predict tomorrow's price</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                {{ prediction_text }}
+                <br>
+                {% if prediction_text %}
+                <small>+/-1.9% change can occur in price</small>
+                {% endif%}
+                <div class="table-responsive">
+                    {{ comparison_table|safe }}
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-            {{ prediction_text }}
-            <div class="table-responsive">
-                {{ comparison_table|safe }}
+        <div>
+            <div class="col-md-12">
+                {% if image %}
+                <img src="data:image/png;base64,{{ image }}" class="img-responsive center-block" \>
+                {% endif %}
             </div>
         </div>
 
